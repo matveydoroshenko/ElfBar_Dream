@@ -209,12 +209,6 @@ async def reviews(call: CallbackQuery):
     await call.message.edit_text(text=text, reply_markup=main_keyboard())
 
 
-async def original(call: CallbackQuery):
-    db = Database()
-    text = db.select_text(position="Оригинальность")[0]
-    await call.message.edit_text(text=text, reply_markup=main_keyboard())
-
-
 def register_inline(dp: Dispatcher):
     dp.register_callback_query_handler(admin_menu, text="admin_menu", state="*", is_admin=True)
     dp.register_callback_query_handler(add_delete_product, text="add_delete_product", state="*", is_admin=True)
@@ -231,7 +225,6 @@ def register_inline(dp: Dispatcher):
     dp.register_callback_query_handler(product_puffs, puffs_callback.filter(), state="puffs")
     dp.register_callback_query_handler(puffs_product, puffs_product_callback.filter(), state="*")
     dp.register_callback_query_handler(reviews, text="reviews", state="*")
-    dp.register_callback_query_handler(original, text="original", state="*")
     dp.register_callback_query_handler(back_to_admin, text="back_to_admin", state="*", is_admin=True)
     dp.register_callback_query_handler(back_to_sub_admin, text="back_to_sub_admin", state="*", is_admin=True)
     dp.register_callback_query_handler(back_to_edit_text, text="back_to_edit_text", state="*", is_admin=True)
