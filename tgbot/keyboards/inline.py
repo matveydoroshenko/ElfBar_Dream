@@ -119,10 +119,11 @@ def main_keyboard():
     db = Database()
     text = db.select_text(position="Кнопка списка товаров")[0]
     url = db.select_text(position="Оригинальность")[0]
+    url_1 = db.select_text(position="Отзывы")[0]
     keyboard = InlineKeyboardMarkup()
     contacts_button = InlineKeyboardButton(text="📞 Контакты 📞", callback_data="contacts")
     button = InlineKeyboardButton(text=text, callback_data="products")
-    reviews_button = InlineKeyboardButton(text="💭 Отзывы 💭", callback_data="reviews")
+    reviews_button = InlineKeyboardButton(text="💭 Отзывы 💭", url=url_1)
     original_button = InlineKeyboardButton(text="☑️ Оригинальность ☑️", url=url)
     keyboard.add(button)
     keyboard.add(contacts_button)
